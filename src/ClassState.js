@@ -6,7 +6,7 @@ const SECURITY_CODE = 'paradigma';
 class ClassState extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       value: '',
       error: false,
@@ -14,29 +14,17 @@ class ClassState extends React.Component {
     };
   }
 
-  // componentWillMount() {
-  // UNSAFE_componentWillMount() {
-  //   console.log("componentWillMount")
-  // }
-  
-  // componentDidMount() {
-  //   console.log("componentDidMount")
-  // }
-
   componentDidUpdate() {
-    console.log('actualizacion');
+    // se ejecuta cada vez que actualizamos un estado de nuestra aplicacion
 
     if (!!this.state.loading) {
-      setTimeout(() => {
-        console.log("Haciendo la validación")
-  
-        if (SECURITY_CODE === this.state.value) {
-          this.setState({ error: false, loading: false });
-        } else {
-          this.setState({ error: true, loading: false });
-        }
+      setTimeout(() => {  
+        let error = false;
+        if (SECURITY_CODE !== this.state.value) {
+          error = true
+        } 
+        this.setState({ error, loading: false });
         
-        console.log("terminando la validación")
       }, 3000);
     }
   }
@@ -72,3 +60,13 @@ class ClassState extends React.Component {
 }
 
 export { ClassState };
+
+
+  // componentWillMount() { // SE EJECUTA DESPUES DE RENDERIZAR LA APLICACION
+  // UNSAFE_componentWillMount() {
+  //   console.log("componentWillMount")
+  // }
+  
+  // componentDidMount() { //  SE EJECUTA ANTES DE RENDERIZAR LA APLICACION
+  //   console.log("componentDidMount")
+  // }
